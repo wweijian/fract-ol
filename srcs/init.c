@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 06:29:50 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 21:07:54 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 21:56:43 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	init_mlx(t_fractal *f)
 	f->rx = 0.5;
 	f->fx = 1.0;
 	get_fractal_layout(f);
-	// get_colours(f);
+	get_colours(f);
 }

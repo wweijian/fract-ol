@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 05:25:36 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 21:06:17 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 22:04:39 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,10 @@ void	display_help(t_fractal *frac);
 
 /* EXIT.C */
 void	free_everything(t_fractal *f);
+
+
+void	get_colours(t_fractal *f);
+void	reinit_img(t_fractal *f);
+void	init_img(t_fractal *f);
 
 #endif
