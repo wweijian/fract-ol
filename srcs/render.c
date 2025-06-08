@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 16:57:20 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 17:48:35 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 21:34:31 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	render(t_fractal *f)
 	double	px_r;
 	double	px_i;
 	int		iteration;
-
+	
 	mlx_clear_window(f->mlx, f->win);
-	y = -1;
+	y = 0;
 	while (y < HEIGHT)
 	{
-		x = -1;
+		x = 0;
 		while (x < WIDTH)
 		{
 			px_r = f->min_real + (double)x * (f->max_real - f->min_real) / WIDTH;
 			px_i = f->max_i + (double)y * (f->min_i - f->max_i) / HEIGHT;
 			iteration = fractalization(f, px_r, px_i);
-			set_pixel(f,x,y, f->palette[iteration]);
+			set_pixel(f, x, y, f->palette[iteration]);
 			x++;
 		}
 		y++;
@@ -40,12 +40,12 @@ void	render(t_fractal *f)
 
 int	fractalization(t_fractal *f, double px_r, double px_i)
 {
-	// if (f->set == MANDELBROT)
-	// 	return(mandelbrot(px_r, px_i));
+	if (f->set == MANDELBROT)
+		return(mandelbrot(px_r, px_i));
 	// else if (f->set == JULIA)
-	// 	return(mandelbrot(px_r, px_i));
+	// 	return(julia(px_r, px_i));
 	// else if (f->set == KOCH)
-	// 	return(mandelbrot(px_r, px_i));
+	// 	return(koch(px_r, px_i));
 	return (1);
 }
 

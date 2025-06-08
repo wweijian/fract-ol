@@ -6,7 +6,7 @@
 #    By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/07 06:33:12 by wjhoe             #+#    #+#              #
-#    Updated: 2025/06/07 17:39:44 by wjhoe            ###   ########.fr        #
+#    Updated: 2025/06/08 21:08:47 by wjhoe            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS := ${addprefix ${SRCS_PATH}, ${SRCS}}
 # OBJS := ${addprefix ${OBJS_PATH}, ${OBJS}}
 
 all:
-	cc srcs/*.c -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -L. libraries/libft/libft.a -I includes -o fractol
+	cc srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a -g -O0
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${HDRS}
@@ -44,6 +44,11 @@ all:
 ${NAME}: ${LIBFT} ${MLX} ${HDRS} #woudl this work without the flags at the end?
 #	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${MLX} -I ${HDRS} -lXext -lX11 -lm
 	${CC} ${CFLAGS} ${SRCS} -L. ${LIBFT} ${MLX} -I ${HDRS} -o ${NAME}
+
+mandelbrot: all
+	./fractol m 0xFF0011
+
+m: mandelbrot
 
 ${MLX}:
 	make -sC ${MLX_PATH}

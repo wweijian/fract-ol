@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 06:09:21 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 21:08:59 by wjhoe            ###   ########.fr       */
+/*   Created: 2025/06/08 20:52:23 by wjhoe             #+#    #+#             */
+/*   Updated: 2025/06/08 21:48:42 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int main(int ac, char **av)
+int	mandelbrot(double real, double imaginary)
 {
-	t_fractal	f;
+	int		n;
+	double	mand_r;
+	double	mand_i;
+	double	temp;
 	
-	if (ac < 2)
-		return (0);
-	init_frac(&f);
-	parse_arg(&f, ac, av);
-	init_mlx(&f);
-	render(&f);
-	printf("%d \n", f.set);
-	printf("%f \n", f.real);
-	printf("%f \n", f.i);
-	printf("%d \n", f.colour);
+	n = 0;
+	mand_r = 0;
+	mand_i = 0;
+	while (n < MAX_ITERATIONS)
+	{
+		if ((mand_r * mand_r + mand_i * mand_i) > 4.0)
+			break ;
+		temp = 2 * mand_r * mand_i + imaginary;
+		mand_r = mand_r * mand_r - mand_i * mand_i + real;
+		mand_i = temp;
+		n++;
+	}
+	return (n);
 }
+

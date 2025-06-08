@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 05:25:36 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 17:47:39 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 21:06:17 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	set_julia_values(t_fractal *f, int ac, char **av);
 void	render(t_fractal *f);
 int		fractalization(t_fractal *f, double px_r, double px_i);
 void	set_pixel(t_fractal *f, int x, int y, int colour);
+
+/* FRACTALS */
+int	mandelbrot(double real, double imaginary);
 
 /* UTILS.C */
 int	move_space_sign_0x(char *s);

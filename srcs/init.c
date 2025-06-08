@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 06:29:50 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 17:46:26 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 21:07:54 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_frac(t_fractal *f)
 {
 	f->mlx = NULL;
 	f->win = NULL;
-
 	f->img = NULL;
 	f->buf = NULL;
 	f->set = -1;

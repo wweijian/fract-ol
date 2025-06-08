@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 09:56:16 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 20:31:30 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/08 20:39:09 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	fractal_atox(t_fractal *f, char *s)
 	i = move_space_sign_0x(s);
 	res = 0;
 	hexa_count = 0;
-	 (s[i] && ft_ishexa(s[i]))
+	while (s[i] && ft_ishexa(s[i]))
 	{
 		if (ft_isdigit(s[i]))
 			res = res * 16 + s[i] - '0';
