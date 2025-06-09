@@ -5,25 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 06:09:21 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 21:08:59 by wjhoe            ###   ########.fr       */
+/*   Created: 2025/06/09 11:12:53 by wjhoe             #+#    #+#             */
+/*   Updated: 2025/06/09 17:43:36 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int main(int ac, char **av)
+int main (int ac, char **av)
 {
-	t_fractal	f;
+	t_fractal	*f;
 	
 	if (ac < 2)
 		return (0);
-	init_frac(&f);
-	parse_arg(&f, ac, av);
-	init_mlx(&f);
-	render(&f);
-	printf("%d \n", f.set);
-	printf("%f \n", f.real);
-	printf("%f \n", f.i);
-	printf("%d \n", f.colour);
+	f = malloc(sizeof(*f));
+	init_frac(f);
+	validate_argument(f, ac, av);
+	init_mlx(f);
+	draw_fractals(f);
+	printf("set:\t%d \n", f->set);
+	printf("r:\t%f \n", f->cr);
+	printf("i:\t%f \n", f->ci);
+	printf("col:\t%d \n", f->colour);
+	mlx_loop(f->mlx);
 }

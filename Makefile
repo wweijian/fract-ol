@@ -6,7 +6,7 @@
 #    By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/07 06:33:12 by wjhoe             #+#    #+#              #
-#    Updated: 2025/06/08 21:08:47 by wjhoe            ###   ########.fr        #
+#    Updated: 2025/06/09 18:57:28 by wjhoe            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,10 @@ mandelbrot: all
 	./fractol m 0xFF0011
 
 m: mandelbrot
+
+memcheck:
+	cc -fsanitize=address -g -O0 srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a
+	./fractol m 0xFF0011
 
 ${MLX}:
 	make -sC ${MLX_PATH}

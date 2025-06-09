@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/07 06:29:50 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 21:56:43 by wjhoe            ###   ########.fr       */
+/*   Created: 2025/06/09 11:24:23 by wjhoe             #+#    #+#             */
+/*   Updated: 2025/06/09 17:39:30 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,56 +19,48 @@ void	init_frac(t_fractal *f)
 	f->img = NULL;
 	f->buf = NULL;
 	f->set = -1;
-	f->min_real = 0;
-	f->max_real = 0;
+	f->colour = 0;
+	f->min_r = 0;
+	f->max_r = 0;
 	f->min_i = 0;
 	f->max_i = 0;
-	f->real = 0;
-	f->i = 0;
+	f->cr = 0;
+	f->ci = 0;
 	f->sx = 0;
 	f->rx = 0;
-	f->fx = 0;
-	f->palette = NULL;
-	f->colour_range = -1;
-	f->colour = 0;
+	f->offx = 0;
 }
 
-void	get_fractal_layout(t_fractal *f)
+void	init_fractal_minmax(t_fractal *f)
 {
 	if (f->set == MANDELBROT)
 	{
-		f->min_real = -4.0;
-		f->max_real = 4.0;
+		f->min_r = -4.0;
+		f->max_r = 4.0;
 		f->min_i = -4.0;
-		f->max_i = f->min_i + (f->max_real - f->min_real * HEIGHT / WIDTH);
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 	if (f->set == JULIA)
 	{
-		f->min_real = -2.0;
-		f->max_real = 2.0;
+		f->min_r = -2.0;
+		f->max_r = 2.0;
 		f->min_i = -2.0;
-		f->max_i = f->min_i + (f->max_real - f->min_real * HEIGHT / WIDTH);
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 	if (f->set == KOCH)
 	{
-		f->min_real = -4.0;
-		f->max_real = 4.0;
+		f->min_r = -4.0;
+		f->max_r = 4.0;
 		f->min_i = -4.0;
-		f->max_i = f->min_i + (f->max_real - f->min_real * HEIGHT / WIDTH);
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 }
 
 void	init_mlx(t_fractal *f)
 {
 	f->mlx = mlx_init();
-	if (!f->mlx)
-		free_everything(f);
-	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, "42fractol");
-	if (!f->win)
-		free_everything(f);
-	f->sx = 2.0;
-	f->rx = 0.5;
-	f->fx = 1.0;
-	get_fractal_layout(f);
-	get_colours(f);
+	f->win = mlx_new_window(f->mlx, HEIGHT, WIDTH, "42fract-ol");
+	f->img = mlx_new_image(f->mlx, HEIGHT, WIDTH);
+	f->buf = mlx_get_data_addr(f->img, &f->pixel_bits, &f->size_line, &f->endian);
+	init_fractal_minmax(f);
 }

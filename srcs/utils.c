@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 09:56:16 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/08 20:39:09 by wjhoe            ###   ########.fr       */
+/*   Created: 2025/06/09 11:48:45 by wjhoe             #+#    #+#             */
+/*   Updated: 2025/06/09 13:46:39 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	move_space_sign_0x(char *s)
+int move_space_sign_0x(char *s)
 {
 	int	i;
 
@@ -21,38 +21,34 @@ int	move_space_sign_0x(char *s)
 		i++;
 	if (s[i] == '+')
 		i++;
-	if(s[i] && s[i + 1])
+	if (s[i] && s[i + 1])
 	{
-		if (s[i] == '0')
-		{
-			if (s[i+1] == 'x' || s[i + 1] == 'X')
-				i += 2;
-		}
+		if (s[i] == '0' && (s[i + 1] == 'X' || s[i + 1] == 'x'))
+			i += 2;
 	}
 	return (i);
 }
 
-int	fractal_atox(t_fractal *f, char *s)
+int	fractal_atox (t_fractal *f, char *s)
 {
 	int	i;
-	int	hexa_count;
+	int	hex_count;
 	int	res;
 
 	i = move_space_sign_0x(s);
 	res = 0;
-	hexa_count = 0;
-	while (s[i] && ft_ishexa(s[i]))
+	hex_count = 0;
+	while (s[i + hex_count] && ft_ishexa(s[i + hex_count]))
 	{
-		if (ft_isdigit(s[i]))
-			res = res * 16 + s[i] - '0';
+		if (ft_isdigit(s[i + hex_count]))
+			res = res * 16 + s[i + hex_count] - '0';
 		else
-			res = res * 16 + (ft_toupper(s[i]) - 'A' + 10);
-		i++;
-		hexa_count++;
+			res = res * 16 + (ft_toupper(s[i + hex_count]) - 'A' + 10);
+		hex_count++;
 	}
-	if (hexa_count == 6 && !s[i])
+	if (hex_count == 6 && !s[i + hex_count])
 		return (res);
 	else
-		display_help(f);
+		error_msg(f);
 	return (0);
 }

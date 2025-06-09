@@ -1,0 +1,18 @@
+What am i trying to do? 
+
+I'm tryign to mathematically determine the colour of a pixel
+And putting it into an x by y square 
+the colour of this pixel is determined by how slow or fast it escapes 
+if it doesn't escape, the colour will be black (0x000000)
+
+This mathematical equation is based on the set that is given
+MANDELBROT, JULIA, KOCH or others
+
+These sets are involve complex numbers, which are
+z = c + xi 
+where both c and x are variables 
+
+we are mapping the left most coordinate to be the min_i
+and the right most coordinate to be max_i
+we are also mapping the top most coordinate to be min_r
+bottom most being max_r
