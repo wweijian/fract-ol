@@ -6,7 +6,7 @@
 #    By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/07 06:33:12 by wjhoe             #+#    #+#              #
-#    Updated: 2025/06/09 18:57:28 by wjhoe            ###   ########.fr        #
+#    Updated: 2025/06/09 23:50:15 by wjhoe            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,24 @@ ${NAME}: ${LIBFT} ${MLX} ${HDRS} #woudl this work without the flags at the end?
 	${CC} ${CFLAGS} ${SRCS} -L. ${LIBFT} ${MLX} -I ${HDRS} -o ${NAME}
 
 mandelbrot: all
-	./fractol m 0xFF0011
+	./fractol m 0xFFCC11
 
 m: mandelbrot
 
+julia: all
+	./fractol j 0xFFCC11 -0.745429 0.05
+
+j: julia
+
+newton: all
+	./fractol n 0xFFCC11
+
+n: all
+	./fractol n 0xFFCC11
+
 memcheck:
 	cc -fsanitize=address -g -O0 srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a
-	./fractol m 0xFF0011
+	./fractol m 0xFAC011
 
 ${MLX}:
 	make -sC ${MLX_PATH}

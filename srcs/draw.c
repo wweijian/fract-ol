@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:12:23 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 19:25:24 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/09 23:49:46 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void fractalization(t_fractal *f, int x, int y)
 		mandelbrot(f, x, y);
 	else if (f->set == JULIA)
 		julia(f, x, y);
-	else if (f->set == KOCH)
-		koch(f, x, y);
+	else if (f->set == NEWTON)
+		newton(f, x, y);
 	else
 		error_msg(f);
 }

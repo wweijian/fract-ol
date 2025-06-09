@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:26:49 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 17:38:05 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/09 23:49:18 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	get_set(t_fractal *f, char **av)
 		f->set = MANDELBROT;
 	else if (check_set(av[1], "julia", 'j'))
 		f->set = JULIA;
-	else if (check_set(av[1], "koch", 'k'))
-		f->set = KOCH;
+	else if (check_set(av[1], "newton", 'n'))
+		f->set = NEWTON;
 	else
 		error_msg(f);
 }
@@ -79,7 +79,8 @@ void	error_msg(t_fractal *f)
 	free_everything(f);
 }
 
-void free_everything(t_fractal *f)
+int free_everything(t_fractal *f)
 {
 	(void) f;
+	exit(1);
 }

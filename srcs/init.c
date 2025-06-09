@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:24:23 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 19:14:08 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 00:28:35 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	init_frac(t_fractal *f)
 	f->max_i = 0;
 	f->cr = 0;
 	f->ci = 0;
-	f->sx = 0;
-	f->rx = 0;
-	f->offx = 0;
+	f->zoom = 1;
 }
 
 void	init_fractal_minmax(t_fractal *f)
@@ -47,11 +45,11 @@ void	init_fractal_minmax(t_fractal *f)
 		f->min_i = -2.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
-	if (f->set == KOCH)
+	if (f->set == NEWTON)
 	{
-		f->min_r = -4.0;
-		f->max_r = 4.0;
-		f->min_i = -4.0;
+		f->min_r = -1.0;
+		f->max_r = 1.0;
+		f->min_i = -1.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 }
