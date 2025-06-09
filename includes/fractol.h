@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:15:28 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 17:39:35 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/09 19:29:24 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define WIDTH 480
 # define HEIGHT 480
-# define MAX_ITERATIONS 50
+# define MAX_ITERATIONS 500
 
 # define MANDELBROT 1
 # define JULIA 2

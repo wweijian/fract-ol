@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:01:18 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 17:43:56 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/09 19:25:00 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void mandelbrot(t_fractal *f, int x , int y)
 
 	f->zr = 0.0;
 	f->zi = 0.0;
-	x = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	y = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	f->cr = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	f->ci = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		temp = pow(f->zr, 2) - pow(f->zi, 2) + x;
-		f->zr = 2.0 * f->zr * f->zi + y;
+		temp = pow(f->zr, 2) - pow(f->zi, 2) + f->cr;
+		f->zr = 2.0 * f->zr * f->zi + f->ci;
 		f->zi = temp;
 		if (pow(f->zr, 2) + pow(f->zi, 2) > f->max_r)
 			break;
