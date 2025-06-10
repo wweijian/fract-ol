@@ -6,14 +6,14 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 21:36:16 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 18:29:19 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:44:53 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "events_bonus.h"
 
-/* int	mouse_event(int event, int x, int y, t_fractal *f)
+int	mouse_event(int event, int x, int y, t_fractal *f)
 {
 	double mouse_r;
 	double mouse_i;
@@ -29,7 +29,7 @@
 	zoom_to_point(f, f->zoom, mouse_r, mouse_i);
 	draw_fractals(f);
 	return (0);
-} */
+}
 
 int	key_event(int key, t_fractal *f)
 {
@@ -54,7 +54,7 @@ int	key_event(int key, t_fractal *f)
 	draw_fractals(f);
 	return (0);
 }
-/* 
+
 void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
 {
 	if (fabs(x + (f->max_r - x) * zoom - x + (f->min_r - x) * zoom) > MAX_ZOOM
@@ -65,7 +65,7 @@ void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
 		f->min_i = y + (f->min_i - y) * zoom;
 		f->max_i = y + (f->max_i - y) * zoom;
 	}
-} */
+}
 
 void	move(t_fractal *f, double dist, int direction)
 {
@@ -114,7 +114,7 @@ void	change_colours(t_fractal *f, int direction)
 	}
 }
 
-int	mouse_event(int event, int x, int y, t_fractal *f)
+/* int	mouse_event(int event, int x, int y, t_fractal *f)
 {
 	double mouse_r;
 	double mouse_i;
@@ -149,7 +149,7 @@ void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
 	else
 		return ;
 }
-
+ */
 /* 
 f->cr = x / f->zoom + f->off_x;
 f->ci = y / f->zoom + f->off_y;

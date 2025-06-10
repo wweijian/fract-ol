@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+         #
+#    By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/07 06:33:12 by wjhoe             #+#    #+#              #
-#    Updated: 2025/06/10 16:09:24 by wjhoe            ###   ########.fr        #
+#    Updated: 2025/06/10 18:45:16 by wjhoe            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ SRCS := ${addprefix ${SRCS_PATH}, ${SRCS}}
 # OBJS = ${SRCS:.c=.o}
 # OBJS := ${addprefix ${OBJS_PATH}, ${OBJS}}
 
-# all:
-# 	cc srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a -g -O0
-
 all:
-	cc srcs/*.c -L. libraries/libft/libft.a -I includes -lmlx -lXext -lX11 -lm -g -O0 -o fractol
+	cc srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a -g -O0
+
+# all:
+# 	cc srcs/*.c -L. libraries/libft/libft.a -I includes -lmlx -lXext -lX11 -lm -g -O0 -o fractol
 
 %.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@ -I ${HDRS}

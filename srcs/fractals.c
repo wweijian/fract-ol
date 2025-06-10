@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:01:18 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:26:44 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:53:32 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void mandelbrot(t_fractal *f, int x , int y)
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		temp = pow(f->z.re, 2) - pow(f->z.im, 2) + f->c.re;
+		temp = f->z.re * f->z.re - f->z.im * f->z.im + f->c.re;
 		f->z.im = 2.0 * f->z.re * f->z.im + f->c.im;
 		f->z.re = temp;
-		if (pow(f->z.re, 2) + pow(f->z.im, 2) > 4.0)
+		if (f->z.re * f->z.re + f->z.im * f->z.im > 4.0)
 			break;
 		i++;
 	}
@@ -48,9 +48,9 @@ void julia(t_fractal *f, int x , int y)
 	while (i < MAX_ITERATIONS)
 	{
 		temp = f->z.re;
-		f->z.re = pow(f->z.re, 2) - pow(f->z.im, 2) + f->c.re;
+		f->z.re = f->z.re * f->z.re - f->z.im * f->z.im + f->c.re;
 		f->z.im = 2 * f->z.im * temp + f->c.im;
-		if (pow(f->z.re, 2) + pow(f->z.im, 2) > 4.0)
+		if (f->z.re * f->z.re + f->z.im * f->z.im > 4.0)
 			break;
 		i++;
 	}

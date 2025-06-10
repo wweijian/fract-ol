@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   newton_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:45:37 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:25:45 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:44:13 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ static t_complex	fx_div_fprime(double re, double im)
 	t_complex	top;
 	t_complex	btm;
 
-	top.re = pow(re, 4) - pow(re, 2) * pow(im, 2) * 6 - pow(im, 2) - 1;
-	top.im = 4 * pow(re, 3) * im - 4 * pow(im, 3) * re;
-	btm.re = (pow(re, 3) - 3 * re * pow (im, 2)) * 4;
-	btm.im = (3 * pow(re, 2) * im - pow(im, 3)) * 4;
-	if (pow(btm.re, 2) + pow(btm.im, 2) == 0)
+	top.re = re * re * re * re - re * re * im * im * 6 - im * im - 1;
+	top.im = 4 * re * re * re * im - 4 * im * im * im * re;
+	btm.re = (re * re * re - 3 * re * im * im) * 4;
+	btm.im = (3 * re * re * im - im * im * im) * 4;
+	if (btm.re * btm.re + btm.im * btm.im == 0)
 	{
 		z.re = 0;
 		z.im = 0;
 		return (z);
 	}
-	z.re = (top.re * btm.re + btm.im * top.im) / (pow(btm.re, 2) + pow(btm.im, 2));
-	z.im = (top.im * btm.im - top.im * btm.re) / (pow(btm.re, 2) + pow(btm.im, 2));
+	z.re = (top.re * btm.re + btm.im * top.im) / (btm.re * btm.re + btm.im * btm.im);
+	z.im = (top.im * btm.im - top.im * btm.re) / (btm.re * btm.re + btm.im * btm.im);
 	return (z);
 }
 
