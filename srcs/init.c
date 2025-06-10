@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:24:23 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 00:28:35 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 15:00:35 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ void	init_fractal_minmax(t_fractal *f)
 {
 	if (f->set == MANDELBROT)
 	{
-		f->min_r = -4.0;
-		f->max_r = 4.0;
-		f->min_i = -4.0;
-		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+		f->min_r = -2.0;
+		f->max_r = 2.0;
+		f->min_i = -2.0;
+		f->max_i = 2.0;
 	}
 	if (f->set == JULIA)
 	{
 		f->min_r = -2.0;
 		f->max_r = 2.0;
 		f->min_i = -2.0;
-		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+		f->max_i = 2.0;
 	}
 	if (f->set == NEWTON)
 	{
-		f->min_r = -1.0;
-		f->max_r = 1.0;
-		f->min_i = -1.0;
-		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+		f->min_r = -4.0;
+		f->max_r = 4.0;
+		f->min_i = -4.0;
+		f->max_i = 4.0;
 	}
 }
 

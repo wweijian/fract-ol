@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events_bonus.h                                     :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/09 21:09:14 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 12:01:42 by wjhoe            ###   ########.fr       */
+/*   Created: 2025/06/10 14:54:09 by wjhoe             #+#    #+#             */
+/*   Updated: 2025/06/10 15:03:27 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EVENTS_BONUS_H
-# define EVENTS_BONUS_H
+#include "fractol.h"
 
-# define ESC 53
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-# define Z 6
-# define X 7
-# define ZERO 29
+void	error_msg(t_fractal *f)
+{
+	ft_putendl_fd("jialat", 1);
+	free_and_exit(f);
+}
 
-# define UP_SCROLL 4
-# define DOWN_SCROLL 5
-
-#endif
+int free_and_exit(t_fractal *f)
+{
+	if (f)
+	{
+		if (f->mlx)
+			free(f->mlx);
+		if (f->win)
+			free(f->win);
+		if (f->img)
+			free(f->img);
+		if (f->buf)
+			free(f->buf);
+		free(f);		
+	}
+	exit(0);
+}

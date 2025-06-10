@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:01:18 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 00:28:09 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 14:18:13 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void mandelbrot(t_fractal *f, int x , int y)
 		temp = pow(f->zr, 2) - pow(f->zi, 2) + f->cr;
 		f->zi = 2.0 * f->zr * f->zi + f->ci;
 		f->zr = temp;
-		if (pow(f->zr, 2) + pow(f->zi, 2) > f->max_r)
+		if (pow(f->zr, 2) + pow(f->zi, 2) > 4.0)
 			break;
 		i++;
 	}
@@ -50,33 +50,7 @@ void julia(t_fractal *f, int x , int y)
 		temp = f->zr;
 		f->zr = pow(f->zr, 2) - pow(f->zi, 2) + f->cr;
 		f->zi = 2 * f->zi * temp + f->ci;
-		if (pow(f->zr, 2) + pow(f->zi, 2) > f->max_r)
-			break;
-		i++;
-	}
-	if (i == MAX_ITERATIONS)
-		put_pixel(f, x, y, 0x000000);
-	else
-		put_pixel(f, x, y, f->colour * i);
-}
-
-void	newton(t_fractal *f, int x , int y)
-{
-	int			i;
-	t_complex	temp;
-	t_complex	num;
-	
-	num.re = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	num.im = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
-	i = 0;
-	while (i < MAX_ITERATIONS)
-	{
-		temp.re = num.re;
-		temp.im = num.im;
-		num.re = temp.re + (pow(temp.re, 2) - pow(temp.im, 2) - temp.re) / (temp.re * 2 - 1);
-		num.im = temp.im + (2 * temp.re * temp.im - temp.im) / 2 * temp.im;
-		if (0.00001 < num.re + (pow(num.re, 2) - pow(num.im, 2) - num.re) / (num.re * 2 - 1)
-			|| -0.00001 < num.re + (pow(num.re, 2) - pow(num.im, 2) - num.re) / (num.re * 2 - 1))
+		if (pow(f->zr, 2) + pow(f->zi, 2) > 4.0)
 			break;
 		i++;
 	}

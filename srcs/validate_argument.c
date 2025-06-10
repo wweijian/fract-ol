@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:26:49 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 23:49:18 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 14:54:21 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,4 @@ void	get_julia_values(t_fractal *f, int ac, char **av)
 	f->ci = ft_atof(av[ac - 1]);
 	if (fabs(f->cr) >= 2 || fabs(f->ci) >= 2)
 		error_msg(f);
-}
-
-void	error_msg(t_fractal *f)
-{
-	ft_putendl_fd("jialat", 1);
-	free_everything(f);
-}
-
-int free_everything(t_fractal *f)
-{
-	(void) f;
-	exit(1);
 }
