@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_argument.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:26:49 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 14:54:21 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:27:34 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ void	get_julia_values(t_fractal *f, int ac, char **av)
 {
 	if (f->set != JULIA || ac == 2 || ac == 3)
 	{
-		f->cr = 0.5;
-		f->ci = 0.5;
+		f->c.re = 0.5;
+		f->c.im = 0.5;
 		return ;
 	}
 	if (!ft_strchr(av[ac - 1], '.'))
 		error_msg(f);
 	if (!ft_strchr(av[ac - 2], '.'))
 		error_msg(f);
-	f->cr = ft_atof(av[ac - 2]);
-	f->ci = ft_atof(av[ac - 1]);
-	if (fabs(f->cr) >= 2 || fabs(f->ci) >= 2)
+	f->c.re = ft_atof(av[ac - 2]);
+	f->c.im = ft_atof(av[ac - 1]);
+	if (fabs(f->c.re) >= 2 || fabs(f->c.im) >= 2)
 		error_msg(f);
 }

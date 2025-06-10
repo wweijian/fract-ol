@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:15:28 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 15:03:47 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:22:21 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 # define MAX_COLOUR 16777215
 # define MIN_COLOUR 0
+# define MAX_ZOOM 1e-12
 
 typedef struct s_complex
 {
@@ -52,13 +53,8 @@ typedef struct s_fractal
 	double	max_r;
 	double	min_i;
 	double	max_i;
-	double	zr;
-	double	zi;
-	double	cr;
-	double	ci;	
-	double	temp_r;
-	double	temp_i;
-
+	t_complex	z;
+	t_complex	c;
 	double	zoom; // zoom
 }					t_fractal;
 

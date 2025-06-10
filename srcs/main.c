@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:12:53 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 15:01:07 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:13:51 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int main (int ac, char **av)
 {
 	t_fractal	*f;
 	
-	if (ac < 2)
-		return (0);
 	f = malloc(sizeof(*f));
+	if (ac < 2)
+		error_msg(f);
 	if (!f)
 	{
 		ft_putendl_fd("initialization failed", 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:01:18 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 15:18:45 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:26:44 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void mandelbrot(t_fractal *f, int x , int y)
 	int		i;
 	double	temp;
 
-	f->zr = 0.0;
-	f->zi = 0.0;
-	f->cr = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	f->ci = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	f->z.re = 0.0;
+	f->z.im = 0.0;
+	f->c.re = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	f->c.im = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		temp = pow(f->zr, 2) - pow(f->zi, 2) + f->cr;
-		f->zi = 2.0 * f->zr * f->zi + f->ci;
-		f->zr = temp;
-		if (pow(f->zr, 2) + pow(f->zi, 2) > 4.0)
+		temp = pow(f->z.re, 2) - pow(f->z.im, 2) + f->c.re;
+		f->z.im = 2.0 * f->z.re * f->z.im + f->c.im;
+		f->z.re = temp;
+		if (pow(f->z.re, 2) + pow(f->z.im, 2) > 4.0)
 			break;
 		i++;
 	}
@@ -42,15 +42,15 @@ void julia(t_fractal *f, int x , int y)
 	int		i;
 	double	temp;
 	
-	f->zr = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	f->zi = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	f->z.re = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	f->z.im = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		temp = f->zr;
-		f->zr = pow(f->zr, 2) - pow(f->zi, 2) + f->cr;
-		f->zi = 2 * f->zi * temp + f->ci;
-		if (pow(f->zr, 2) + pow(f->zi, 2) > 4.0)
+		temp = f->z.re;
+		f->z.re = pow(f->z.re, 2) - pow(f->z.im, 2) + f->c.re;
+		f->z.im = 2 * f->z.im * temp + f->c.im;
+		if (pow(f->z.re, 2) + pow(f->z.im, 2) > 4.0)
 			break;
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 21:36:16 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 15:01:36 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:20:32 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	key_event(int key, t_fractal *f)
 		move(f, 0.05, LEFT);
 	else if(key == RIGHT)
 		move(f, 0.05, RIGHT);
-	else if(key == Z)
-		change_colours(f, Z);
-	else if(key == X)
-		change_colours(f, X);
+	else if(key == UC_Z || key == LC_Z)
+		change_colours(f, UC_Z);
+	else if(key == UC_X || key == LC_X)
+		change_colours(f, UC_X);
 	else if(key == ZERO)
 		init_fractal_minmax(f);
 	else
@@ -57,10 +57,14 @@ int	key_event(int key, t_fractal *f)
 
 void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
 {
-	f->min_r = x + (f->min_r - x) * zoom;
-	f->max_r = x + (f->max_r - x) * zoom;
-	f->min_i = y + (f->min_i - y) * zoom;
-	f->max_i = y + (f->max_i - y) * zoom;
+	if (fabs(x + (f->max_r - x) * zoom - x + (f->min_r - x) * zoom) > MAX_ZOOM
+			&& fabs(y + (f->max_i - y) * zoom - y + (f->min_i - y) * zoom) > MAX_ZOOM)
+	{
+		f->min_r = x + (f->min_r - x) * zoom;
+		f->max_r = x + (f->max_r - x) * zoom;
+		f->min_i = y + (f->min_i - y) * zoom;
+		f->max_i = y + (f->max_i - y) * zoom;
+	}
 }
 
 void	move(t_fractal *f, double dist, int direction)
@@ -94,14 +98,14 @@ void	move(t_fractal *f, double dist, int direction)
 
 void	change_colours(t_fractal *f, int direction)
 {
-	if (direction == Z)
+	if (direction == UC_Z)
 	{
 		if (f->colour < 32)
 			f->colour = MAX_COLOUR - (32 - f->colour);
 		else
 			f->colour -= 32;
 	}
-	if (direction == X)
+	if (direction == UC_X)
 	{
 		if (f->colour > MAX_COLOUR - 32)
 			f->colour = MIN_COLOUR + 32 - (MAX_COLOUR - f->colour);

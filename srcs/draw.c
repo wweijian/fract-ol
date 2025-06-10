@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:12:23 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 11:32:00 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:24:03 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ void put_pixel(t_fractal *f, int x, int y, int colour)
 	int	*buffer;
 	
 	buffer = f->buf;
-	buffer[(y * f->size_line / 4) + x] = colour; // why? 
+	buffer[(y * f->size_line / 4) + x] = colour;
 }

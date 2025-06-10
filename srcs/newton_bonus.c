@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nova_bonus.c                                       :+:      :+:    :+:   */
+/*   newton_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:45:37 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 12:15:39 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 17:25:45 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ static t_complex	fx_div_fprime(double re, double im)
 void	newton(t_fractal *f, int x, int y)
 {
 	int			i;
-	t_complex	z;
+	t_complex	a;
 
-	f->zr = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	f->zi = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
+	f->z.re = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
+	f->z.im = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	i = 0;
 	while (i < MAX_ITERATIONS)
 	{
-		z = fx_div_fprime(f->zr, f->zi);
-		if (0.001 > fabs(z.re) || 0.001 > fabs(z.im))
+		a = fx_div_fprime(f->z.re, f->z.im);
+		if (0.001 > fabs(a.re) || 0.001 > fabs(a.im))
 			break ;
-		f->zr = z.re;
-		f->zi = z.im;
+		f->z.re = a.re;
+		f->z.im = a.im;
 		i++;
 	}
 	if (i == MAX_ITERATIONS)
