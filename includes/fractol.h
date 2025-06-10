@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:15:28 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:22:21 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 18:09:03 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ typedef struct s_fractal
 	double	max_i;
 	t_complex	z;
 	t_complex	c;
-	double	zoom; // zoom
+	double	zoom;
+	double	off_x;
+	double	off_y;
 }					t_fractal;
 
 void	validate_argument(t_fractal *f, int ac, char **av);
