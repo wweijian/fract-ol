@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:15:28 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 18:09:03 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/13 17:58:16 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdio.h>
 # include <math.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -30,7 +29,6 @@
 
 # define MAX_COLOUR 16777215
 # define MIN_COLOUR 0
-# define MAX_ZOOM 1e-12
 
 typedef struct s_complex
 {
@@ -40,48 +38,59 @@ typedef struct s_complex
 
 typedef struct s_fractal
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*buf; // pointer to img
-	int		set;
-	int		colour;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
-	double	min_r;
-	double	max_r;
-	double	min_i;
-	double	max_i;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*buf;
+	int			set;
+	int			colour;
+	int			pixel_bits;
+	int			size_line;
+	int			endian;
+	double		min_r;
+	double		max_r;
+	double		min_i;
+	double		max_i;
 	t_complex	z;
 	t_complex	c;
-	double	zoom;
-	double	off_x;
-	double	off_y;
+	double		zoom;
+	double		off_x;
+	double		off_y;
 }					t_fractal;
 
+/* VALIDATE ARGUMENT */
 void	validate_argument(t_fractal *f, int ac, char **av);
-int 	check_set(char *arg, char *set_name, char set_abbr);
+int		check_set(char *arg, char *set_name, char set_abbr);
 void	get_set(t_fractal *f, char **av);
 void	get_julia_values(t_fractal *f, int ac, char **av);
+
+/* EXIT */
 void	error_msg(t_fractal *f);
 int		free_and_exit(t_fractal *f);
-int		fractal_atox (t_fractal *f, char *s);
-void	init_frac(t_fractal *f);
+
+/* UTILS */
+int		fractal_atox(t_fractal *f, char *s);
+
+/* INITIALIZATION */
 void	init_mlx(t_fractal *f);
-void	draw_fractals(t_fractal *f);
-void 	mandelbrot(t_fractal *f, int x , int y);
-void 	julia(t_fractal *f, int x , int y);
-void	newton(t_fractal *f, int x , int y);
-void 	draw_fractals(t_fractal *f);
-void 	fractalization(t_fractal *f, int x, int y);
-void 	put_pixel(t_fractal *f, int x, int y, int colour);
 void	init_fractal_minmax(t_fractal *f);
+void	init_frac(t_fractal *f);
+
+/* DRAW */
+void	draw_fractals(t_fractal *f);
+void	fractalization(t_fractal *f, int x, int y);
+void	put_pixel(t_fractal *f, int x, int y, int colour);
+
+/* FRACTALS */
+void	mandelbrot(t_fractal *f, int x, int y);
+void	julia(t_fractal *f, int x, int y);
+void	newton(t_fractal *f, int x, int y);
+
+/* EVENTS */
 int		mouse_event(int event, int x, int y, t_fractal *f);
 int		key_event(int key, t_fractal *f);
-void	zoom_to_point(t_fractal *f, double zoom, double mouse_r, double mouse_i);
+void	zoom_to_point(t_fractal *f, double zoom, double x, double y);
 void	move(t_fractal *f, double dist, int direction);
 void	change_colours(t_fractal *f, int direction);
-
 
 #endif

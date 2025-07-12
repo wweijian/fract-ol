@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:01:18 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 18:53:32 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 22:44:19 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void mandelbrot(t_fractal *f, int x , int y)
+void	mandelbrot(t_fractal *f, int x, int y)
 {
 	int		i;
 	double	temp;
@@ -28,7 +28,7 @@ void mandelbrot(t_fractal *f, int x , int y)
 		f->z.im = 2.0 * f->z.re * f->z.im + f->c.im;
 		f->z.re = temp;
 		if (f->z.re * f->z.re + f->z.im * f->z.im > 4.0)
-			break;
+			break ;
 		i++;
 	}
 	if (i == MAX_ITERATIONS)
@@ -37,11 +37,11 @@ void mandelbrot(t_fractal *f, int x , int y)
 		put_pixel(f, x, y, f->colour * i);
 }
 
-void julia(t_fractal *f, int x , int y)
+void	julia(t_fractal *f, int x, int y)
 {
 	int		i;
 	double	temp;
-	
+
 	f->z.re = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
 	f->z.im = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	i = 0;
@@ -51,7 +51,7 @@ void julia(t_fractal *f, int x , int y)
 		f->z.re = f->z.re * f->z.re - f->z.im * f->z.im + f->c.re;
 		f->z.im = 2 * f->z.im * temp + f->c.im;
 		if (f->z.re * f->z.re + f->z.im * f->z.im > 4.0)
-			break;
+			break ;
 		i++;
 	}
 	if (i == MAX_ITERATIONS)

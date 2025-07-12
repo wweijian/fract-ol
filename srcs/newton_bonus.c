@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   newton_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 10:45:37 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 18:44:13 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/11 12:13:01 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static t_complex	fx_div_fprime(double re, double im)
 		z.im = 0;
 		return (z);
 	}
-	z.re = (top.re * btm.re + btm.im * top.im) / (btm.re * btm.re + btm.im * btm.im);
-	z.im = (top.im * btm.im - top.im * btm.re) / (btm.re * btm.re + btm.im * btm.im);
+	z.re = (top.re * btm.re + btm.im * top.im)
+		/ (btm.re * btm.re + btm.im * btm.im);
+	z.im = (top.im * btm.im - top.im * btm.re)
+		/ (btm.re * btm.re + btm.im * btm.im);
 	return (z);
 }
 
@@ -44,7 +46,7 @@ void	newton(t_fractal *f, int x, int y)
 	while (i < MAX_ITERATIONS)
 	{
 		a = fx_div_fprime(f->z.re, f->z.im);
-		if (0.001 > fabs(a.re) || 0.001 > fabs(a.im))
+		if (0.008 > fabs(a.re) || 0.008 > fabs(a.im))
 			break ;
 		f->z.re = a.re;
 		f->z.im = a.im;

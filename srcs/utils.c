@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:48:45 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/09 13:46:39 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/11 11:55:55 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int move_space_sign_0x(char *s)
+int	move_space_sign_0x(char *s)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int move_space_sign_0x(char *s)
 	return (i);
 }
 
-int	fractal_atox (t_fractal *f, char *s)
+int	fractal_atox(t_fractal *f, char *s)
 {
 	int	i;
 	int	hex_count;

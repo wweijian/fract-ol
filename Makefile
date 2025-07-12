@@ -3,24 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+         #
+#    By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/07 06:33:12 by wjhoe             #+#    #+#              #
-#    Updated: 2025/06/10 18:45:16 by wjhoe            ###   ########.fr        #
+#    Updated: 2025/06/13 17:56:58 by wjhoe            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 HDRS = ./includes/
-LIB_PATH = ./libraries/
 
-#MLX_OS = linux
-MLX_OS = mac_os/
-MLX_PATH = ${LIB_PATH}mlx/${MLX_OS}
+MLX_PATH = mlx/
 MLX = ${MLX_PATH}libmlx.a
 
-LIBFT_PATH = ${LIB_PATH}libft/
+LIBFT_PATH = libft/
 LIBFT = ${LIBFT_PATH}libft.a
 
 # COMPILE RULES
@@ -28,25 +25,25 @@ CC = cc
 CFLAGS = -Werror -Wextra -Wall
 
 SRCS_PATH = ./srcs/
-SRCS = main.c arg_parse.c init.c
+SRCS = main.c draw.c exit.c init.c validate_argument.c fractals.c \
+		utils.c events_bonus.c newton_bonus.c
 SRCS := ${addprefix ${SRCS_PATH}, ${SRCS}}
 
-# OBJS_PATH = ./objs/
-# OBJS = ${SRCS:.c=.o}
-# OBJS := ${addprefix ${OBJS_PATH}, ${OBJS}}
-
-all:
-	cc srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a -g -O0
-
-# all:
-# 	cc srcs/*.c -L. libraries/libft/libft.a -I includes -lmlx -lXext -lX11 -lm -g -O0 -o fractol
+all: ${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@ -I ${HDRS}
+	${CC} ${CFLAGS} -c $< -o $@ -I${HDRS} -Imlx
 
-${NAME}: ${LIBFT} ${MLX} ${HDRS} #woudl this work without the flags at the end?
-#	${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT} ${MLX} -I ${HDRS} -lXext -lX11 -lm
-	${CC} ${CFLAGS} ${SRCS} -L. ${LIBFT} ${MLX} -I ${HDRS} -o ${NAME}
+${NAME}: ${SRCS} ${LIBFT} ${MLX} ${HDRS}
+		${CC} ${CFLAGS} ${SRCS} -L. ${LIBFT} -I${HDRS} -Lmlx -Imlx -lmlx -lXext -lX11 -lm -o ${NAME}
+
+${MLX}:
+	@make -C mlx
+	@echo ">> MLX made <<"
+
+${LIBFT}:
+	@make -C ${LIBFT_PATH}
+	@echo ">> libft made <<"
 
 mandelbrot: all
 	./fractol m 0xFFCC11
@@ -54,28 +51,16 @@ mandelbrot: all
 m: mandelbrot
 
 julia: all
-	./fractol j 0xFFCC11 -0.745429 0.05
+	./fractol j 0xFFCC11 -0.745429 1.01235
 
 j: julia
 
 newton: all
 	./fractol n 0xFFCC11
 
-n: all
-	./fractol n 0xFFCC11
+n: newton
 
-memcheck:
-	cc -fsanitize=address -g -O0 srcs/*.c -L. -lmlx -framework OpenGL -framework AppKit -o fractol -I includes/ -L. libraries/libft/libft.a
-	./fractol m 0xFAC011
-
-${MLX}:
-	make -sC ${MLX_PATH}
-	@echo "MLX made"
-
-${LIBFT}:
-	make -C ${LIBFT_PATH}
-
-bonus: all
+bonus: ${NAME}
 
 clean:
 	rm -rf $(OBJ_PATH)
@@ -84,8 +69,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIBFT_PATH)$(LIBFT_NAME)
+	make fclean -C $(LIBFT_PATH)
 
 re: fclean all
 
-.PHONY: all re clean fclean
+.PHONY: all re clean fclean mandelbrot julia newton m j n

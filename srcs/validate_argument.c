@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:26:49 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:27:34 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 22:55:29 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	validate_argument(t_fractal *f, int ac, char **av)
 	if (ac == 3 || (ac == 5 && f->set == JULIA))
 		f->colour = fractal_atox(f, av[2]);
 	else
-		f->colour = 0xFF00FF;
+		f->colour = 0xF0A4C0;
 }
 
-int check_set(char *arg, char *set_name, char set_abbr)
+int	check_set(char *arg, char *set_name, char set_abbr)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ void	get_julia_values(t_fractal *f, int ac, char **av)
 {
 	if (f->set != JULIA || ac == 2 || ac == 3)
 	{
-		f->c.re = 0.5;
+		f->c.re = -0.5;
 		f->c.im = 0.5;
 		return ;
 	}

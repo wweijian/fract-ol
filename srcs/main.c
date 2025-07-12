@@ -6,19 +6,19 @@
 /*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:12:53 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:13:51 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/13 17:12:19 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_fractal	*f;
-	
-	f = malloc(sizeof(*f));
+
 	if (ac < 2)
-		error_msg(f);
+		error_msg(NULL);
+	f = malloc(sizeof(*f));
 	if (!f)
 	{
 		ft_putendl_fd("initialization failed", 1);

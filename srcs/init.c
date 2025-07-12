@@ -6,7 +6,7 @@
 /*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:24:23 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 17:27:02 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/11 12:08:13 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,24 @@ void	init_fractal_minmax(t_fractal *f)
 void	init_mlx(t_fractal *f)
 {
 	f->mlx = mlx_init();
+	if (!f->mlx)
+	{
+		ft_putendl_fd("intialization failed", 1);
+		free_and_exit(f);
+	}
 	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, "42fract-ol");
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
-	f->buf = mlx_get_data_addr(f->img, &f->pixel_bits, &f->size_line, &f->endian);
+	if (!f->img || !f->win)
+	{
+		ft_putendl_fd("intialization failed", 1);
+		free_and_exit(f);
+	}
+	f->buf = mlx_get_data_addr(f->img, &f->pixel_bits,
+			&f->size_line, &f->endian);
+	if (!f->buf)
+	{
+		ft_putendl_fd("intialization failed", 1);
+		free_and_exit(f);
+	}
 	init_fractal_minmax(f);
 }

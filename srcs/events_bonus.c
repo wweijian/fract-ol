@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wjhoe <wjhoe@student.42singapore.sg>       +#+  +:+       +#+        */
+/*   By: wjhoe <wjhoe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 21:36:16 by wjhoe             #+#    #+#             */
-/*   Updated: 2025/06/10 18:44:53 by wjhoe            ###   ########.fr       */
+/*   Updated: 2025/06/10 22:42:07 by wjhoe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	mouse_event(int event, int x, int y, t_fractal *f)
 {
-	double mouse_r;
-	double mouse_i;
-	
+	double	mouse_r;
+	double	mouse_i;
+
 	if (event == UP_SCROLL)
 		f->zoom = 0.9;
 	else if (event == DOWN_SCROLL)
@@ -25,7 +25,7 @@ int	mouse_event(int event, int x, int y, t_fractal *f)
 	else
 		return (0);
 	mouse_r = f->min_r + x * (f->max_r - f->min_r) / WIDTH;
-	mouse_i = f->min_i + x * (f->max_i - f->min_i) / HEIGHT;
+	mouse_i = f->min_i + y * (f->max_i - f->min_i) / HEIGHT;
 	zoom_to_point(f, f->zoom, mouse_r, mouse_i);
 	draw_fractals(f);
 	return (0);
@@ -35,19 +35,19 @@ int	key_event(int key, t_fractal *f)
 {
 	if (key == ESC)
 		free_and_exit(f);
-	else if(key == UP)
+	else if (key == UP)
 		move(f, 0.05, UP);
-	else if(key == DOWN)
+	else if (key == DOWN)
 		move(f, 0.05, DOWN);
-	else if(key == LEFT)
+	else if (key == LEFT)
 		move(f, 0.05, LEFT);
-	else if(key == RIGHT)
+	else if (key == RIGHT)
 		move(f, 0.05, RIGHT);
-	else if(key == UC_Z || key == LC_Z)
+	else if (key == UC_Z || key == LC_Z)
 		change_colours(f, UC_Z);
-	else if(key == UC_X || key == LC_X)
+	else if (key == UC_X || key == LC_X)
 		change_colours(f, UC_X);
-	else if(key == ZERO)
+	else if (key == ZERO)
 		init_fractal_minmax(f);
 	else
 		return (1);
@@ -57,14 +57,10 @@ int	key_event(int key, t_fractal *f)
 
 void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
 {
-	if (fabs(x + (f->max_r - x) * zoom - x + (f->min_r - x) * zoom) > MAX_ZOOM
-			&& fabs(y + (f->max_i - y) * zoom - y + (f->min_i - y) * zoom) > MAX_ZOOM)
-	{
-		f->min_r = x + (f->min_r - x) * zoom;
-		f->max_r = x + (f->max_r - x) * zoom;
-		f->min_i = y + (f->min_i - y) * zoom;
-		f->max_i = y + (f->max_i - y) * zoom;
-	}
+	f->min_r = x + (f->min_r - x) * zoom;
+	f->max_r = x + (f->max_r - x) * zoom;
+	f->min_i = y + (f->min_i - y) * zoom;
+	f->max_i = y + (f->max_i - y) * zoom;
 }
 
 void	move(t_fractal *f, double dist, int direction)
@@ -76,13 +72,13 @@ void	move(t_fractal *f, double dist, int direction)
 	mid_i = f->max_i - f->min_i;
 	if (direction == UP)
 	{
-		f->min_i += mid_i * dist;
-		f->max_i += mid_i * dist;
+		f->min_i -= mid_i * dist;
+		f->max_i -= mid_i * dist;
 	}
 	if (direction == DOWN)
 	{
-		f->min_i -= mid_i * dist;
-		f->max_i -= mid_i * dist;
+		f->min_i += mid_i * dist;
+		f->max_i += mid_i * dist;
 	}
 	if (direction == LEFT)
 	{
@@ -113,44 +109,3 @@ void	change_colours(t_fractal *f, int direction)
 			f->colour += 32;
 	}
 }
-
-/* int	mouse_event(int event, int x, int y, t_fractal *f)
-{
-	double mouse_r;
-	double mouse_i;
-	
-	if (event == UP_SCROLL)
-		zoom_to_point(f, 1, x, y);
-	else if (event == DOWN_SCROLL)
-		zoom_to_point(f, -1, x, y);
-	else
-		return (0);
-	draw_fractals(f);
-	return (0);
-}
-
-void	zoom_to_point(t_fractal *f, double zoom, double x, double y)
-{
-	double	factor;
-
-	factor = 1.1;
-	if (zoom > 0)
-	{
-		f->off_x = (x / f->zoom + f->off_x) - (x / (f->zoom * factor));
-		f->off_y = (y / f->zoom + f->off_y) - (y / (f->zoom * factor));
-		f->zoom *= factor;
-	}
-	if (zoom < 0)
-	{
-		f->off_x = (x / f->zoom + f->off_x) - (x / (f->zoom / factor));
-		f->off_y = (y / f->zoom + f->off_y) - (y / (f->zoom / factor));
-		f->zoom /= factor;
-	}
-	else
-		return ;
-}
- */
-/* 
-f->cr = x / f->zoom + f->off_x;
-f->ci = y / f->zoom + f->off_y;
-*/
